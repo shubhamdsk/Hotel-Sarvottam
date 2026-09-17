@@ -1,4 +1,4 @@
-# हॉटेल सर्वोत्तम — Menu
+﻿# हॉटेल सर्वोत्तम — Menu
 
 The menu of Hotel Sarvottam Family Restaurant (Kokangaon, Tal. Sangamner, Dist. Ahilyanagar), as a
 website and as four print-ready A3 cards.
@@ -88,36 +88,43 @@ portrait, margins **None**, and enable **Background graphics**.
 
 ## GitHub repository setup
 
-The project is published from the repository **`Sarvottam-Menu-React`** under
-[github.com/shubhamdsk](https://github.com/shubhamdsk). The Vite `base` is derived from that name,
-so the repository must keep it (or `VITE_BASE` must be set to match).
-
-Create the repository on GitHub (empty, no README), then from this folder:
+The project lives in [github.com/shubhamdsk/Hotel-Sarvottam](https://github.com/shubhamdsk/Hotel-Sarvottam)
+and nothing else is published from this machine. Day to day:
 
 ```bash
-git init
 git add .
-git commit -m "Hotel Sarvottam menu: React + TypeScript + Vite"
-git branch -M main
-git remote add origin https://github.com/shubhamdsk/Sarvottam-Menu-React.git
-git push -u origin main
+git commit -m "…"
+git push
 ```
 
 ## Deployment to GitHub Pages
 
 `.github/workflows/deploy.yml` runs on every push to `main`: it installs dependencies, runs the
-typecheck, the linter and the production build, then publishes `dist/` to Pages.
-
-One-time setup on GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+typecheck, the linter and the production build, then publishes `dist/` to Pages. The
+`configure-pages` step carries `enablement: true`, so the very first run switches Pages on by
+itself; no manual setting is needed.
 
 Deployed URL:
 
 ```
-https://shubhamdsk.github.io/Sarvottam-Menu-React/
+https://shubhamdsk.github.io/Hotel-Sarvottam/
 ```
 
-If the repository is ever renamed, either update `REPOSITORY_NAME` in `vite.config.ts` or build with
-`VITE_BASE=/new-name/ npm run build`; for a user site (`shubhamdsk.github.io`) set the base to `/`.
+The repository name is the URL path. `REPOSITORY_NAME` in `vite.config.ts` must match it, or the
+built assets will 404; a one-off build elsewhere can use `VITE_BASE=/new-name/ npm run build`, and a
+user site (`shubhamdsk.github.io`) would use `/`.
+
+## SEO and link previews
+
+`vite.config.ts` contains a small `seo` plugin that, at build time:
+
+- fills the absolute site URL into the canonical link and the Open Graph / Twitter tags;
+- injects `Restaurant` JSON-LD built from `src/data/contact.ts` and `src/data/restaurant.ts`, so the
+  address, phone, hours and rating a search engine reads are the same ones printed on the cards;
+- emits `robots.txt` and `sitemap.xml` pointing at that URL.
+
+`public/og-image.jpg` (1200 × 630) is the picture WhatsApp, Facebook and X show when the link is
+shared — the hotel's own lit storefront, with its name on the sign.
 
 ## Notes
 

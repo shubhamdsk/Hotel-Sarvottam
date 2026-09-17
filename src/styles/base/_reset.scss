@@ -13,6 +13,15 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* the page scrolls, but no scrollbar is drawn over the menu */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 body {
