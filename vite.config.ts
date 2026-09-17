@@ -20,6 +20,14 @@ export default defineConfig(({ command }) => ({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  server: {
+    host: true,
+    port: 5180,
+  },
+  preview: {
+    host: true,
+    port: 5180,
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
