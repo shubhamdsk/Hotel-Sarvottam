@@ -5,15 +5,19 @@ import { CONTACT } from './src/data/contact';
 import { RESTAURANT } from './src/data/restaurant';
 
 /**
- * The repository this site is published from.  GitHub Pages serves a project
- * site under `/<repository>/`, so the production bundle has to be built with
- * that prefix; `npm run dev` keeps serving from the root.
+ * Where the site is published.
  *
- * Override with `VITE_BASE=/other-name/ npm run build` if the repository is
- * ever renamed, or set it to `/` for a user site (`<user>.github.io`).
+ * GitHub Pages serves a project site under `/<repository>/`, so the bundle has
+ * to carry that prefix; hosts that serve from a root (Cloudflare Pages, Netlify,
+ * a custom domain) need `/` instead. Both the asset paths and every absolute URL
+ * in the metadata come from these two values, so one build can be pointed
+ * anywhere:
+ *
+ *   npm run build                                        → GitHub Pages
+ *   VITE_BASE=/ VITE_SITE_ORIGIN=https://example.com …   → anywhere else
  */
 const REPOSITORY_NAME = 'Hotel-Sarvottam';
-const SITE_ORIGIN = 'https://shubhamdsk.github.io';
+const DEFAULT_ORIGIN = 'https://shubhamdsk.github.io';
 
 /**
  * Search engines and link previews need absolute URLs and a machine-readable
@@ -100,10 +104,11 @@ function seo(siteUrl: string): Plugin {
 
 export default defineConfig(({ command }) => {
   const base = process.env.VITE_BASE ?? (command === 'build' ? `/${REPOSITORY_NAME}/` : '/');
+  const origin = (process.env.VITE_SITE_ORIGIN ?? DEFAULT_ORIGIN).replace(/\/+$/, '');
 
   return {
     base,
-    plugins: [react(), seo(`${SITE_ORIGIN}${base}`)],
+    plugins: [react(), seo(`${origin}${base}`)],
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
