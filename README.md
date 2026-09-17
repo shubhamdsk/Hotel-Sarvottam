@@ -69,6 +69,17 @@
 
 ---
 
+## मेनू QR — टेबलवर लावण्यासाठी
+
+फोनने स्कॅन करा, संपूर्ण मेनू उघडेल.
+
+<img src="public/qr/menu-qr-card.png" alt="हॉटेल सर्वोत्तम मेनू QR" width="320" />
+
+छपाईसाठी: [कार्ड (PNG)](public/qr/menu-qr-card.png) · [फक्त QR (PNG)](public/qr/menu-qr.png) ·
+[फक्त QR (SVG — कितीही मोठा करता येईल)](public/qr/menu-qr.svg)
+
+---
+
 ## संपर्क
 
 |             |                                                                          |
