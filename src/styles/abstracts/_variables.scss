@@ -1,0 +1,64 @@
+/* ---------------------------------------------------------------------------
+   Design tokens. Nothing in the app hard-codes a colour or a typeface; they
+   all come from here.
+   --------------------------------------------------------------------------- */
+
+/* --- ink and paper --- */
+$ink: #2f1d10;
+$ink-soft: rgba(47, 29, 16, 0.55);
+$muted: #96805c;
+$panel: #fffdfa;
+$panel-shade: #fbf6ed;
+$panel-edge: #e3d8c4;
+$hairline: rgba(122, 82, 40, 0.14);
+$leader: rgba(122, 82, 40, 0.38);
+
+/* --- the gold of the chef's cap in the crest --- */
+$gold: #c9a227;
+$gold-light: #e7cf8e;
+$gold-pale: #f6e7bd;
+$gold-deep: #a8871a;
+$gold-mid: #d9b455;
+$banner-ink: #5a3d0c;
+
+/* --- the table the card lies on --- */
+$wood: #3a2214;
+$wood-dark: #1b1008;
+$cream: #f7e6bd;
+$green-deep: #0f3d2e;
+$green-mid: #17573f;
+
+/* --- the price, the one red on the card --- */
+$price: #a4161a;
+$price-hover: #7f1114;
+
+/* --- type --- */
+$font-mr: 'Tiro Devanagari Marathi', 'Nirmala UI', 'Mangal', serif;
+$font-en: 'Lora', Georgia, 'Times New Roman', serif;
+$font-ui: 'Montserrat', system-ui, -apple-system, sans-serif;
+$font-script: 'Great Vibes', cursive;
+
+/* --- the printed sheet --- */
+$sheet-width: 297mm;
+$sheet-height: 420mm;
+$sheet-padding: 8mm;
+$sheet-inset: 4mm;
+
+/* ---------------------------------------------------------------------------
+   Breakpoints.
+
+   The card has two layouts, not one layout at two sizes:
+
+   - at or above $bp-sheet the window is wide enough to show a true A3 sheet,
+     so the printed layout is what you see;
+   - below it the same content is re-laid out for the web - fluid width, one
+     dish column, type in rem - because a shrunken A3 is unreadable on a phone.
+   --------------------------------------------------------------------------- */
+$bp-sheet: 1200px; /* A3 is ~1123px wide, plus gutters */
+$bp-tablet: 900px;
+$bp-phone: 600px;
+$bp-small: 380px;
+
+/* --- motion --- */
+$ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+$duration: 0.18s;

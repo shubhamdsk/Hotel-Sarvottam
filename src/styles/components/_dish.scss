@@ -1,0 +1,204 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+/* ---------------------------------------------------------------------------
+   One dish per row: number, name, price.
+
+   The hierarchy is deliberate and it is the whole point of the redesign - the
+   Marathi name is the largest thing on the panel, the English reading is a
+   clear step down beside it, and the price sits in a fixed column of its own.
+   Rows are given room to breathe rather than being shrunk to fit.
+   --------------------------------------------------------------------------- */
+.dish {
+  display: grid;
+  grid-template-columns: 5.5mm minmax(0, 1fr) 18mm;
+  align-items: baseline;
+  gap: 0 2mm;
+  padding: 1.35mm 1mm;
+  border-radius: 1mm;
+  break-inside: avoid;
+
+  & + .dish {
+    border-top: 1px solid v.$hairline;
+  }
+}
+
+.dish__index {
+  font-family: v.$font-ui;
+  font-size: 10px;
+  font-weight: 600;
+  color: v.$ink-soft;
+  text-align: right;
+}
+
+.dish__name {
+  display: flex;
+  align-items: baseline;
+  gap: 2mm;
+  min-width: 0;
+}
+
+.dish__name-mr {
+  font-family: v.$font-mr;
+  font-size: 19px;
+  line-height: 1.45; /* Devanagari matras need headroom above and below */
+  color: v.$ink;
+  white-space: nowrap;
+}
+
+.dish__name-en {
+  font-family: v.$font-en;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: v.$muted;
+  @include m.no-wrap-ellipsis;
+}
+
+.dish__leader {
+  flex: 1 1 auto;
+  min-width: 3mm;
+  border-bottom: 1.3px dotted v.$leader;
+  transform: translateY(-4px);
+}
+
+.dish__price {
+  font-family: v.$font-ui;
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: v.$price;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* --- house specials --- */
+.dish__star {
+  align-self: center;
+  color: #e0a500;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.dish__illustration {
+  flex: none;
+  align-self: center;
+  width: 7mm;
+  height: 7mm;
+  border-radius: 50%;
+  background: #fffdf7;
+  box-shadow:
+    0 0 0 0.9px v.$gold,
+    0 1px 3px rgba(90, 58, 30, 0.35);
+}
+
+/* A section standing beside another one is half as wide: tighten the columns
+   rather than the type, so the names stay the same size across the card. */
+.menu-section__panel--cols-1 .dish {
+  grid-template-columns: 6mm minmax(0, 1fr) 20mm;
+}
+
+/* ---------------------------------------------------------------------------
+   Web layout: the row keeps its three parts, but the columns are sized in px
+   and the type in rem, so a name never shrinks just because the window did.
+   --------------------------------------------------------------------------- */
+@include m.web {
+  .dish,
+  .menu-section__panel--cols-1 .dish {
+    grid-template-columns: 22px minmax(0, 1fr) auto;
+    gap: 0 10px;
+    padding: 9px 4px;
+    border-radius: 6px;
+  }
+
+  .dish__name {
+    gap: 10px;
+  }
+
+  .dish__name-mr {
+    font-size: clamp(1.02rem, 2.5vw, 1.2rem);
+  }
+
+  .dish__name-en {
+    font-size: 0.8rem;
+  }
+
+  .dish__price {
+    font-size: 1rem;
+  }
+
+  .dish__leader {
+    min-width: 12px;
+  }
+}
+
+@include m.phone-down {
+  /* The English reading drops to its own line rather than being cut short, and
+     the dotted leader goes with it - there is no width left to lead across. */
+  .dish,
+  .menu-section__panel--cols-1 .dish {
+    grid-template-columns: 20px minmax(0, 1fr) auto;
+    gap: 0 8px;
+    padding: 10px 2px;
+  }
+
+  .dish__name {
+    flex-wrap: wrap;
+    gap: 0 8px;
+  }
+
+  .dish__name-mr {
+    font-size: 1.06rem;
+    white-space: normal;
+  }
+
+  .dish__name-en {
+    flex-basis: 100%;
+    white-space: normal;
+    overflow: visible;
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  .dish__leader {
+    display: none;
+  }
+
+  .dish__price {
+    font-size: 0.98rem;
+  }
+}
+
+@include m.tiny {
+  .dish,
+  .menu-section__panel--cols-1 .dish {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  /* the running number is the first thing to go when space runs out */
+  .dish__index {
+    display: none;
+  }
+}
+
+/* --- screen only: a quiet hover, never printed --- */
+@media screen {
+  .dish {
+    transition:
+      background v.$duration v.$ease,
+      box-shadow v.$duration v.$ease;
+
+    &:hover {
+      background: linear-gradient(90deg, rgba(255, 244, 214, 0.95), rgba(247, 232, 197, 0.6));
+      box-shadow: 0 2px 10px rgba(90, 58, 30, 0.18);
+    }
+
+    &:hover .dish__price {
+      color: v.$price-hover;
+    }
+
+    &:hover .dish__leader {
+      border-bottom-color: rgba(122, 82, 40, 0.8);
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@use '../abstracts/variables' as v;
+
+/* Search and filter results: one page, one column, no A3 sheet in sight. */
+.results {
+  width: min(900px, 92vw);
+  margin: 0 auto;
+}
+
+.results__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.results__title {
+  font-family: v.$font-mr;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: v.$cream;
+}
+
+.results__title-en {
+  display: block;
+  margin-top: 2px;
+  font-family: v.$font-ui;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247, 230, 189, 0.5);
+}
+
+.results__hint {
+  font-family: v.$font-mr;
+  font-size: 0.92rem;
+  color: rgba(247, 230, 189, 0.6);
+}
+
+.results__list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}

@@ -1,0 +1,24 @@
+/* ---------------------------------------------------------------------------
+   Sarvottam menu - stylesheet entry point.
+
+   abstracts/  design tokens and mixins, no output of their own
+   base/       reset, accessibility helpers, print rules
+   components/ one partial per component, named after its block
+   --------------------------------------------------------------------------- */
+
+@use 'base/reset';
+@use 'base/a11y';
+
+@use 'components/app';
+@use 'components/site';
+@use 'components/toolbar';
+@use 'components/results';
+@use 'components/card';
+@use 'components/header';
+@use 'components/section';
+@use 'components/dish';
+@use 'components/closing';
+@use 'components/footer';
+
+/* last, so it can override anything above for paper */
+@use 'base/print';

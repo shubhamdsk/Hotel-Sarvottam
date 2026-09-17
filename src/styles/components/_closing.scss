@@ -1,0 +1,74 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.closing-note {
+  margin-top: 2.5mm;
+  text-align: center;
+}
+
+.closing-note__thanks {
+  font-family: v.$font-mr;
+  font-size: 18px;
+  line-height: 1.6;
+  @include m.on-wood;
+}
+
+.closing-note__script {
+  font-family: v.$font-script;
+  font-size: 32px;
+  line-height: 1.1;
+  color: v.$gold-light;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
+}
+
+.closing-note__visit {
+  margin-top: 1.2mm;
+  display: inline-block;
+  padding: 1.4mm 9mm;
+  border: 1.2px solid v.$gold;
+  border-radius: 999px;
+  background: linear-gradient(180deg, v.$green-mid 0%, v.$green-deep 60%, #0a2b20 100%);
+  box-shadow:
+    0 0 0 3px rgba(255, 253, 247, 0.85),
+    0 4px 10px rgba(0, 0, 0, 0.45);
+  font-family: v.$font-mr;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #fdf6e2;
+  @include m.print-colours;
+}
+
+.closing-note__visit-en {
+  display: block;
+  font-family: v.$font-script;
+  font-size: 21px;
+  line-height: 1.2;
+  color: v.$gold-light;
+}
+
+/* ---------------------------------------------------------------------------
+   Web layout
+   --------------------------------------------------------------------------- */
+@include m.web {
+  .closing-note {
+    margin-top: clamp(16px, 3vw, 24px);
+  }
+
+  .closing-note__thanks {
+    font-size: clamp(1rem, 2.4vw, 1.15rem);
+  }
+
+  .closing-note__script {
+    font-size: clamp(1.7rem, 5vw, 2.2rem);
+  }
+
+  .closing-note__visit {
+    margin-top: 10px;
+    padding: 8px clamp(22px, 6vw, 40px);
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+  }
+
+  .closing-note__visit-en {
+    font-size: clamp(1.15rem, 3.4vw, 1.35rem);
+  }
+}

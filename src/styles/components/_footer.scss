@@ -1,0 +1,98 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.card-footer {
+  position: relative;
+  margin-top: 3mm;
+  padding-top: 2.2mm;
+  border-top: 1px solid rgba(231, 207, 142, 0.3);
+  text-align: center;
+}
+
+.card-footer__note {
+  font-family: v.$font-mr;
+  font-size: 17px;
+  line-height: 1.7;
+  @include m.on-wood;
+}
+
+.card-footer__contact {
+  margin-top: 1mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4mm;
+  font-family: v.$font-mr;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: rgba(247, 230, 189, 0.82);
+
+  > * + *::before {
+    content: '\2756';
+    margin-right: 4mm;
+    color: v.$gold;
+    font-size: 8px;
+    vertical-align: middle;
+  }
+}
+
+.card-footer__phone {
+  font-family: v.$font-ui;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: v.$gold-light;
+  text-decoration: none;
+}
+
+/* tucked into the corner of the sheet so it costs the list no height */
+.card-footer__page {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-family: v.$font-mr;
+  font-size: 11px;
+  color: rgba(247, 230, 189, 0.5);
+}
+
+/* ---------------------------------------------------------------------------
+   Web layout
+   --------------------------------------------------------------------------- */
+@include m.web {
+  .card-footer {
+    margin-top: clamp(16px, 3vw, 24px);
+    padding-top: clamp(10px, 2vw, 16px);
+  }
+
+  .card-footer__note {
+    font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+  }
+
+  .card-footer__contact {
+    margin-top: 8px;
+    gap: clamp(8px, 2.4vw, 18px);
+    font-size: 0.85rem;
+
+    > * + *::before {
+      margin-right: clamp(8px, 2.4vw, 18px);
+    }
+  }
+
+  .card-footer__page {
+    position: static;
+    margin-top: 10px;
+    font-size: 0.78rem;
+  }
+}
+
+@include m.phone-down {
+  /* stacked, so the address is never broken across a diamond separator */
+  .card-footer__contact {
+    flex-direction: column;
+    gap: 4px;
+
+    > * + *::before {
+      content: none;
+    }
+  }
+}

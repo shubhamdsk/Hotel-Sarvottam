@@ -1,0 +1,104 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+/* ---------------------------------------------------------------------------
+   The card is always laid out at its true A3 size. On screen the whole sheet is
+   zoomed down to fit the window (`--sheet-scale`, set by useSheetScale); in
+   print the zoom goes back to 1, so the preview and the paper cannot drift
+   apart.
+   --------------------------------------------------------------------------- */
+.menu-card {
+  position: relative;
+  width: v.$sheet-width;
+  min-height: v.$sheet-height;
+  padding: v.$sheet-padding;
+  overflow: hidden;
+  zoom: var(--sheet-scale, 1);
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(255, 196, 120, 0.16), rgba(0, 0, 0, 0) 55%),
+    radial-gradient(100% 70% at 50% 100%, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0) 60%),
+    url('../../assets/textures/wood.svg') repeat 0 0 / 190mm auto,
+    v.$wood;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.6);
+  @include m.print-colours;
+
+  /* the gold keyline just inside the edge of the wood */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: v.$sheet-inset;
+    border: 1.6px solid rgba(231, 207, 142, 0.5);
+    border-radius: 3mm;
+    pointer-events: none;
+  }
+}
+
+.menu-card__sheet {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(#{v.$sheet-height} - #{v.$sheet-padding} * 2);
+  padding: 2mm 5mm 0;
+}
+
+/* The dish panels own the middle of the sheet; whatever height is left over is
+   shared out between the blocks, so no card reads as bottom-heavy. */
+.menu-card__board {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4mm;
+  margin-top: 2.5mm;
+  min-height: 0;
+}
+
+.menu-card__block--pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7mm;
+  align-items: start;
+}
+
+/* ---------------------------------------------------------------------------
+   Web layout: the sheet gives up its paper dimensions and becomes a panel that
+   follows the width of the window. Nothing is scaled down - the card simply
+   stops pretending to be a sheet of A3.
+   --------------------------------------------------------------------------- */
+@include m.web {
+  .menu-card {
+    width: min(100%, 860px);
+    min-height: 0;
+    padding: clamp(10px, 2.4vw, 22px);
+    border-radius: 18px;
+    zoom: 1;
+
+    &::before {
+      inset: clamp(5px, 1.2vw, 11px);
+      border-radius: 12px;
+    }
+  }
+
+  .menu-card__sheet {
+    min-height: 0;
+    padding: clamp(6px, 1.6vw, 14px) clamp(4px, 1.4vw, 12px) 0;
+  }
+
+  .menu-card__board {
+    justify-content: flex-start;
+    gap: clamp(18px, 3.4vw, 30px);
+    margin-top: clamp(12px, 2.4vw, 20px);
+  }
+
+  .menu-card__block--pair {
+    gap: clamp(18px, 3.4vw, 30px);
+  }
+}
+
+@include m.tablet-down {
+  /* two short sections side by side stop fitting: stack them */
+  .menu-card__block--pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

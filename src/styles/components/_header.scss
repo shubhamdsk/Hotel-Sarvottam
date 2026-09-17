@@ -1,0 +1,90 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.card-header {
+  position: relative;
+  text-align: center;
+  padding-bottom: 1mm;
+}
+
+.wordmark {
+  width: 74mm;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.55));
+}
+
+.card-header__chef {
+  position: absolute;
+  top: 0;
+  right: 2mm;
+  width: 30mm;
+}
+
+.chef-portrait {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 9px rgba(0, 0, 0, 0.55));
+}
+
+.taglines {
+  margin-top: 1.2mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6mm;
+  font-family: v.$font-mr;
+  font-size: 16px;
+  line-height: 1.7;
+  @include m.on-wood;
+
+  /* gold diamonds between the promises */
+  .taglines__item + .taglines__item::before {
+    content: '\2756';
+    margin-right: 6mm;
+    color: v.$gold;
+    font-size: 10px;
+    vertical-align: middle;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Web layout: the crest keeps the middle, the chef shrinks into the corner he
+   came from, and neither is allowed to crowd the other.
+   --------------------------------------------------------------------------- */
+@include m.web {
+  .card-header {
+    padding-bottom: 4px;
+  }
+
+  .wordmark {
+    width: clamp(180px, 42vw, 300px);
+  }
+
+  .card-header__chef {
+    right: 0;
+    width: clamp(64px, 14vw, 120px);
+  }
+
+  .taglines {
+    margin-top: 6px;
+    gap: clamp(14px, 4vw, 26px);
+    font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+
+    .taglines__item + .taglines__item::before {
+      margin-right: clamp(14px, 4vw, 26px);
+    }
+  }
+}
+
+@include m.phone-down {
+  /* the chef stops being a corner ornament and becomes part of the masthead */
+  .card-header__chef {
+    width: 58px;
+    top: -4px;
+  }
+
+  .wordmark {
+    width: min(64vw, 240px);
+  }
+}

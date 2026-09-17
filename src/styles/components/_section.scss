@@ -1,0 +1,146 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.menu-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- the gold plate that names the course --- */
+.section-banner {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  margin-bottom: -2.6mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3mm;
+  min-width: 76mm;
+  max-width: 94%;
+  padding: 1.5mm 13mm 1.7mm;
+  border-radius: 2mm;
+  @include m.gold-plate;
+}
+
+.section-banner__icon {
+  width: 5.4mm;
+  height: 5.4mm;
+  flex: none;
+  /* dark on gold, the same weight as the heading beside it */
+  filter: brightness(0) opacity(0.78);
+}
+
+.section-banner__title {
+  display: flex;
+  align-items: baseline;
+  gap: 2.5mm;
+  color: v.$banner-ink;
+  text-shadow: 0 1px 0 rgba(255, 253, 247, 0.45);
+  white-space: nowrap;
+}
+
+.section-banner__title-mr {
+  font-family: v.$font-mr;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.section-banner__title-en {
+  font-family: v.$font-ui;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(90, 61, 12, 0.78);
+}
+
+/* --- the paper the dishes are printed on --- */
+.menu-section__panel {
+  display: grid;
+  padding: 4.2mm 4mm 3.4mm;
+  @include m.paper-panel;
+}
+
+.menu-section__panel--cols-1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.menu-section__panel--cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.menu-section__column {
+  padding: 0 5mm;
+
+  & + .menu-section__column {
+    border-left: 1px dashed rgba(122, 82, 40, 0.22);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Web layout
+   --------------------------------------------------------------------------- */
+@include m.web {
+  .section-banner {
+    min-width: 0;
+    max-width: calc(100% - 16px);
+    margin-bottom: -14px;
+    gap: clamp(8px, 1.6vw, 14px);
+    padding: clamp(6px, 1.2vw, 9px) clamp(16px, 4vw, 46px);
+    border-radius: 10px;
+  }
+
+  .section-banner__icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .section-banner__title-mr {
+    font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+  }
+
+  .section-banner__title-en {
+    font-size: 0.66rem;
+  }
+
+  .menu-section__panel {
+    padding: clamp(20px, 3.4vw, 28px) clamp(10px, 2vw, 18px) clamp(12px, 2vw, 18px);
+    border-radius: 14px;
+  }
+
+  .menu-section__column {
+    padding: 0 clamp(4px, 1.4vw, 12px);
+  }
+}
+
+@include m.tablet-down {
+  /* One column of dishes below the tablet breakpoint: two columns of Devanagari
+     names cannot hold their size in half a phone's width. The second column
+     simply continues under the first, numbering unbroken. */
+  .menu-section__panel--cols-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .menu-section__column + .menu-section__column {
+    border-left: 0;
+    border-top: 1px solid rgba(122, 82, 40, 0.14);
+  }
+}
+
+@include m.phone-down {
+  .section-banner {
+    max-width: 100%;
+    margin-bottom: -12px;
+    padding: 7px 18px;
+  }
+
+  .section-banner__title {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    white-space: normal;
+    text-align: center;
+  }
+}

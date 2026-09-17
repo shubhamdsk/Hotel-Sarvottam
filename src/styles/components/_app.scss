@@ -1,0 +1,75 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  padding: 26px 0 48px;
+
+  @include m.web {
+    /* the cards now follow the window, so the page needs side gutters */
+    width: 100%;
+    gap: clamp(20px, 4vw, 30px);
+    padding: clamp(16px, 4vw, 26px) clamp(10px, 4vw, 26px) 48px;
+  }
+}
+
+.menu-document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+
+  @include m.web {
+    width: 100%;
+    gap: clamp(20px, 4vw, 30px);
+  }
+}
+
+/* --- something went wrong --- */
+.error-state {
+  max-width: 44rem;
+  margin: 12vh auto;
+  padding: 32px;
+  border: 1px solid rgba(231, 207, 142, 0.35);
+  border-radius: 16px;
+  background: rgba(58, 34, 20, 0.6);
+  color: v.$cream;
+  text-align: center;
+}
+
+.error-state__title {
+  font-family: v.$font-mr;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.error-state__message {
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: rgba(247, 230, 189, 0.75);
+}
+
+/* --- nothing matched the search --- */
+.empty-state {
+  margin: 12vh auto;
+  padding: 28px 36px;
+  border: 1px dashed rgba(231, 207, 142, 0.4);
+  border-radius: 16px;
+  background: rgba(58, 34, 20, 0.5);
+  color: v.$cream;
+  text-align: center;
+}
+
+.empty-state__title {
+  font-family: v.$font-mr;
+  font-size: 1.25rem;
+}
+
+.empty-state__subtitle {
+  margin: 6px 0 18px;
+  color: rgba(247, 230, 189, 0.7);
+  font-size: 0.95rem;
+}

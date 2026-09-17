@@ -1,0 +1,45 @@
+@use '../abstracts/variables' as v;
+
+/* ---------------------------------------------------------------------------
+   Print is the primary target: four A3 sheets, one card each, edge to edge.
+   --------------------------------------------------------------------------- */
+@page {
+  size: A3 portrait;
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .app {
+    gap: 0;
+    padding: 0;
+  }
+
+  .menu-document {
+    gap: 0;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .menu-card {
+    /* a hair under 420mm, so sub-pixel rounding cannot spill a blank fifth sheet */
+    height: 419.2mm;
+    min-height: 0;
+    zoom: 1;
+    box-shadow: none;
+    break-after: page;
+
+    &:last-of-type {
+      break-after: auto;
+    }
+  }
+
+  .menu-card__sheet {
+    min-height: calc(419.2mm - #{v.$sheet-padding} * 2);
+  }
+}
