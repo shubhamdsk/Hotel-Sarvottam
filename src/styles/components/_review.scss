@@ -1,0 +1,108 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+/* ---------------------------------------------------------------------------
+   The Google review invitation that closes the page: words on the left, the
+   QR code on the right. Screen only.
+   --------------------------------------------------------------------------- */
+.review {
+  width: min(1120px, 92vw);
+  margin: 38px auto 0;
+  padding: clamp(22px, 3vw, 34px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(22px, 4vw, 48px);
+  border: 1px solid rgba(234, 217, 164, 0.22);
+  border-radius: 18px;
+  background: rgba(58, 34, 20, 0.5);
+  color: v.$cream;
+
+  @include m.phone-down {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+  }
+}
+
+.review__eyebrow {
+  font-family: v.$font-ui;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247, 230, 189, 0.55);
+}
+
+.review__title {
+  margin-top: 8px;
+  font-family: v.$font-mr;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 400;
+  line-height: 1.35;
+  color: v.$gold-light;
+}
+
+.review__body {
+  margin-top: 12px;
+  max-width: 48ch;
+  font-family: v.$font-mr;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(247, 230, 189, 0.8);
+}
+
+.review__rating {
+  margin-top: 14px;
+  font-family: v.$font-mr;
+  font-size: 0.95rem;
+  color: rgba(247, 230, 189, 0.62);
+
+  strong {
+    font-family: v.$font-ui;
+    font-weight: 600;
+    color: v.$gold-light;
+  }
+}
+
+.review__link {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: v.$font-mr;
+  font-size: 1.05rem;
+  color: v.$gold-light;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(231, 207, 142, 0.45);
+  transition:
+    color v.$duration v.$ease,
+    border-color v.$duration v.$ease;
+
+  &:hover,
+  &:focus-visible {
+    color: v.$gold-pale;
+    border-bottom-color: v.$gold-pale;
+  }
+}
+
+.review__qr {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 14px 14px 12px;
+  border-radius: 14px;
+  background: #ffffff;
+
+  img {
+    display: block;
+    width: clamp(148px, 18vw, 196px);
+    height: auto;
+  }
+
+  figcaption {
+    font-family: v.$font-mr;
+    font-size: 0.85rem;
+    color: v.$ink-soft;
+  }
+}

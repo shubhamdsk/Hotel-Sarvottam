@@ -8,8 +8,14 @@ export interface ContactDetails {
   readonly address: LocalizedText;
   readonly phone: { readonly display: string; readonly tel: string };
   readonly hours: LocalizedText;
-  readonly rating: { readonly score: number; readonly reviews: number; readonly source: string };
+  readonly rating: {
+    readonly score: number;
+    readonly reviews: number;
+    readonly source: LocalizedText;
+  };
   readonly mapsUrl: string;
+  /** Opens Google's own rate-and-review sheet for this listing. */
+  readonly reviewUrl: string;
 }
 
 export const CONTACT: ContactDetails = {
@@ -28,7 +34,8 @@ export const CONTACT: ContactDetails = {
   rating: {
     score: 4.6,
     reviews: 69,
-    source: 'Google',
+    source: { mr: 'गुगल', en: 'Google' },
   },
-  mapsUrl: 'https://share.google/ZNi7lPu3n58JuhiK4',
+  mapsUrl: 'https://www.google.com/maps/place/?q=place_id:ChIJJW9YAZ7_3DsRtVff3_mZMSE',
+  reviewUrl: 'https://search.google.com/local/writereview?placeid=ChIJJW9YAZ7_3DsRtVff3_mZMSE',
 };

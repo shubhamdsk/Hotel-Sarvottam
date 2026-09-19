@@ -69,14 +69,20 @@
 
 ---
 
-## मेनू QR — टेबलवर लावण्यासाठी
+## QR कोड — टेबलवर लावण्यासाठी
 
-फोनने स्कॅन करा, संपूर्ण मेनू उघडेल.
+| मेनू QR                                                                            | Google रिव्ह्यू QR                                                                        |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| <img src="public/qr/menu-qr-card.png" alt="हॉटेल सर्वोत्तम मेनू QR" width="300" /> | <img src="public/qr/review-qr-card.png" alt="हॉटेल सर्वोत्तम रिव्ह्यू QR" width="300" /> |
+| स्कॅन केल्यावर संपूर्ण मेनू उघडतो                                                  | स्कॅन केल्यावर Google वर रिव्ह्यू देण्याचं पान उघडतं                                       |
 
-<img src="public/qr/menu-qr-card.png" alt="हॉटेल सर्वोत्तम मेनू QR" width="320" />
+छपाईसाठी मेनू QR: [कार्ड (PNG)](public/qr/menu-qr-card.png) · [फक्त QR (PNG)](public/qr/menu-qr.png) ·
+[फक्त QR (SVG)](public/qr/menu-qr.svg)
 
-छपाईसाठी: [कार्ड (PNG)](public/qr/menu-qr-card.png) · [फक्त QR (PNG)](public/qr/menu-qr.png) ·
-[फक्त QR (SVG — कितीही मोठा करता येईल)](public/qr/menu-qr.svg)
+छपाईसाठी रिव्ह्यू QR: [कार्ड (PNG)](public/qr/review-qr-card.png) ·
+[फक्त QR (PNG)](public/qr/review-qr.png) · [फक्त QR (SVG)](public/qr/review-qr.svg)
+
+कार्ड A5 आकारात छापल्यास QR सुमारे ८ सेमीचा येतो — एक हात लांबूनही स्कॅन होतो.
 
 ---
 
@@ -87,7 +93,8 @@
 | **पत्ता**   | मु. पो. कोकणगाव, ता. संगमनेर, जि. अहिल्यानगर — ४१३७१४                    |
 | **फोन**     | [+91 70302 07706](tel:+917030207706)                                     |
 | **वेळ**     | दररोज दुपारी १२:०० ते रात्री ११:३०                                        |
-| **नकाशा**   | [Google Maps वर पहा](https://share.google/ZNi7lPu3n58JuhiK4)             |
+| **नकाशा**   | [Google Maps वर पहा](https://www.google.com/maps/place/?q=place_id:ChIJJW9YAZ7_3DsRtVff3_mZMSE) |
+| **रिव्ह्यू** | [Google वर अभिप्राय द्या](https://search.google.com/local/writereview?placeid=ChIJJW9YAZ7_3DsRtVff3_mZMSE) |
 | **मेनू**    | [shubhamdsk.github.io/Hotel-Sarvottam](https://shubhamdsk.github.io/Hotel-Sarvottam/) |
 
 ### || मनःपूर्वक धन्यवाद — पुन्हा भेट द्या ! ||

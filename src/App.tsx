@@ -1,6 +1,7 @@
 import { MenuDocument } from './components/layout/MenuDocument';
 import { SearchResults } from './components/menu/SearchResults';
 import { PhotoGallery } from './components/site/PhotoGallery';
+import { ReviewInvite } from './components/site/ReviewInvite';
 import { SiteFooter } from './components/site/SiteFooter';
 import { SiteHero } from './components/site/SiteHero';
 import { EmptyState } from './components/ui/EmptyState';
@@ -51,6 +52,7 @@ export default function App(): React.JSX.Element {
       </main>
 
       <PhotoGallery />
+      <ReviewInvite />
       <SiteFooter />
     </>
   );

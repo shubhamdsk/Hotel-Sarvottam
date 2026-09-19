@@ -102,8 +102,11 @@ function seo(siteUrl: string): Plugin {
   };
 }
 
-export default defineConfig(({ command }) => {
-  const base = process.env.VITE_BASE ?? (command === 'build' ? `/${REPOSITORY_NAME}/` : '/');
+export default defineConfig(({ command, isPreview }) => {
+  /* `npm run preview` serves what was built, so it needs the built base too -
+     with `/` it would answer every asset request with index.html. */
+  const isProductionServe = command === 'build' || isPreview === true;
+  const base = process.env.VITE_BASE ?? (isProductionServe ? `/${REPOSITORY_NAME}/` : '/');
   const origin = (process.env.VITE_SITE_ORIGIN ?? DEFAULT_ORIGIN).replace(/\/+$/, '');
 
   return {
